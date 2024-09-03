@@ -1,0 +1,10 @@
+.venv 
+
+processedData
+videoData
+checkpoints
+models
+**__pycache__*
+
+*.mp4
+processedData_ganyu

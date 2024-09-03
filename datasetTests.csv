@@ -1,0 +1,3 @@
+TestFolderPath,GreaterOrLessThan,ExpectedOutput
+rem,less,0.05
+ganyu,greater,0.50
