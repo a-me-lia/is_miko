@@ -2,7 +2,7 @@ import torch
 import torchvision.models as models
 
 def create_model():
-    model = models.resnet50(pretrained=True)
+    model = models.resnet50(models.ResNet50_Weights.DEFAULT)
     layers = list(model.children())
 
     block_names = ['layer1', 'layer2', 'layer3', 'layer4']
