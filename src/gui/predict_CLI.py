@@ -9,7 +9,7 @@ import pandas as pd
 import numpy as np
 import random
 from torch.utils.data import DataLoader
-from tqdm import tqdm  # Import tqdm for progress bars
+from tqdm import tqdm  
 
 class PredictCLI:
     def __init__(self):
@@ -206,7 +206,7 @@ def run_predictCLI():
         print("2. Upload image")
         print("3. Predict")
         print("4. Batch Validate")
-        print("5. Exit")
+        print("q. Exit")
         choice = input("Select an option (1-5): ").strip()
 
         if choice == '1':
@@ -217,7 +217,7 @@ def run_predictCLI():
             cli.predict()
         elif choice == '4':
             cli.batch_validate()
-        elif choice == '5':
+        elif choice == 'q':
             break
         else:
             print("Invalid option, please choose again.")

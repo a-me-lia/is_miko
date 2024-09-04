@@ -9,7 +9,7 @@ class CLIApplication:
     def run(self):
         while True:
             self.show_menu()
-            choice = input("Select an option (1-4): ").strip()
+            choice = input("Select an option (1-3): ").strip()
 
             if choice == '1':
                 self.execute_command(run_datasetCLI())
@@ -17,7 +17,7 @@ class CLIApplication:
                 self.execute_command(run_trainCLI())
             elif choice == '3':
                 self.execute_command(run_predictCLI())
-            elif choice == '4':
+            elif choice == 'q':
                 print("Exiting...")
                 break
             else:
@@ -28,7 +28,7 @@ class CLIApplication:
         print("1. Dataset Creation and Editing")
         print("2. Train Model")
         print("3. Predict Image")
-        print("4. Exit")
+        print("q. Exit")
 
     def execute_command(self, command_func):
         try:

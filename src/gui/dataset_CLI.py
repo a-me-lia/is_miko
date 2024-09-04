@@ -75,7 +75,7 @@ def run_datasetCLI():
         print("1. List entries")
         print("2. Add entry")
         print("3. Remove entry")
-        print("4. Exit")
+        print("q. Exit")
         choice = input("Select an option (1-4): ").strip()
 
         if choice == '1':
@@ -84,7 +84,7 @@ def run_datasetCLI():
             cli.add_entry()
         elif choice == '3':
             cli.remove_entry()
-        elif choice == '4':
+        elif choice == 'q':
             break
         else:
             print("Invalid option, please choose again.")

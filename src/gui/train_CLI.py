@@ -60,8 +60,8 @@ def run_trainCLI():
         print(f"3. Edit Training Hyperparameters (Epochs: {epochs}, Batch Size: {batch_size}, Learning Rate: {learning_rate})")
         print(f"4. Train Model ")
         print(f"5. Change Chart Output Paths (Loss Chart: {chart_output_path}, Accuracy Chart: {accuracy_output_path})")
-        print("6. Exit")
-        choice = input("Select an option (1-6): ").strip()
+        print("q. Exit")
+        choice = input("Select an option (1-5): ").strip()
 
         if choice == '1':
             new_csv_file = input("Enter path to the CSV file with video paths: ").strip()
@@ -132,7 +132,7 @@ def run_trainCLI():
                 accuracy_output_path = new_accuracy_chart_path
             print(f"Chart output paths updated to: Loss Chart: {chart_output_path}, Accuracy Chart: {accuracy_output_path}")
 
-        elif choice == '6':
+        elif choice == 'q':
             break
         else:
             print("Invalid option, please choose again.")
