@@ -1,3 +1,18 @@
+"""
+predict_CLI.py
+
+A command-line interface for making predictions using a trained machine learning model.
+This application allows users to load a model, upload images, make predictions,
+and perform batch validations on a dataset.
+
+Modules:
+- Image Processing: Handles image loading and transformations.
+- Model Management: Manages loading and utilizing a pre-trained model.
+
+Author: Matthew Guo
+Date: 24.09.09
+"""
+
 import os
 import torch
 from PIL import Image
@@ -13,6 +28,7 @@ from tqdm import tqdm
 
 class PredictCLI:
     def __init__(self):
+        """Initialize the PredictCLI with default settings."""
         self.model = None
         self.image_path = None
         self.default_model_path = 'cute.pth'
@@ -20,12 +36,14 @@ class PredictCLI:
         self.data_folder = None
 
     def load_model(self):
+        """Load the trained model from the specified path."""
         model_path = self.prompt_for_path(f"Enter path to the trained model (default: {self.default_model_path}): ")
         if not model_path:
             model_path = self.default_model_path
 
         if not os.path.isfile(model_path):
             print("Error: Model file not found, using default.")
+            return
 
         try:
             self.model = create_model().cuda()
@@ -36,6 +54,7 @@ class PredictCLI:
             print(f"Error: Failed to load model: {e}")
 
     def upload_image(self):
+        """Upload an image for prediction."""
         image_path = self.prompt_for_path("Enter path to the image file: ")
         if not os.path.isfile(image_path):
             print("Error: Image file not found.")
@@ -45,6 +64,7 @@ class PredictCLI:
         print("Image uploaded successfully.")
 
     def predict(self):
+        """Make a prediction based on the uploaded image."""
         if not self.model:
             print("Error: Model must be loaded before making predictions.")
             return
@@ -68,9 +88,9 @@ class PredictCLI:
             print(f"Predicted interest: {prediction:.2f}")
         except Exception as e:
             print(f"Error: Prediction failed: {e}")
-        print(f"Error: Batch validation failed: {e}")
 
     def batch_validate(self):
+        """Perform batch validation on a dataset."""
         if not self.model:
             print("Error: Model must be loaded before batch validation.")
             return
@@ -191,14 +211,13 @@ class PredictCLI:
         except Exception as e:
             print(f"Error: Batch validation failed: {e}")
 
-
-
     def prompt_for_path(self, prompt_message):
         """Prompt for a file or directory path with tab completion."""
         path_completer = PathCompleter()
         return prompt(prompt_message, completer=path_completer).strip()
 
 def run_predictCLI():
+    """Run the prediction command-line interface."""
     cli = PredictCLI()
     while True:
         print("\nPrediction CLI")
@@ -207,7 +226,7 @@ def run_predictCLI():
         print("3. Predict")
         print("4. Batch Validate")
         print("q. Exit")
-        choice = input("Select an option (1-5): ").strip()
+        choice = input("Select an option (1-4): ").strip()
 
         if choice == '1':
             cli.load_model()
@@ -221,4 +240,3 @@ def run_predictCLI():
             break
         else:
             print("Invalid option, please choose again.")
-

@@ -1,3 +1,13 @@
+"""
+video_preprocessing.py
+
+A GUI application for preprocessing videos to extract frames containing human faces or bodies.
+It leverages OpenCV for video processing and Tkinter for the graphical interface.
+
+Author: Matthew Guo
+Date: 24.09.09
+"""
+
 import cv2
 import os
 import pandas as pd
@@ -8,6 +18,7 @@ from tkinter import ttk
 
 class VideoProcessorGUI:
     def __init__(self, root):
+        """Initialize the GUI components."""
         self.root = root
         self.root.title("Video Preprocessing")
 
@@ -21,6 +32,7 @@ class VideoProcessorGUI:
         self.frames_processed = 0
 
     def create_widgets(self):
+        """Create GUI widgets for the application."""
         # Label for estimated time
         self.estimate_label = tk.Label(self.root, text="Estimated Time: N/A")
         self.estimate_label.grid(row=0, column=0, padx=10, pady=10)
@@ -42,6 +54,7 @@ class VideoProcessorGUI:
         self.progress_bar.grid(row=2, column=0, padx=10, pady=10)
 
     def update_estimated_time(self, frame_count, processed_count):
+        """Update the estimated time label based on frames processed."""
         elapsed_time = time.time() - self.start_time
         if processed_count > 0:
             avg_time_per_frame = elapsed_time / processed_count
@@ -50,15 +63,18 @@ class VideoProcessorGUI:
             self.estimate_label.config(text=f"Estimated Time: {self.format_time(estimated_time)}")
     
     def update_table(self, video_name, total_frames, kept_frames, time_spent):
+        """Update the information table with new video processing results."""
         self.info_table.insert("", "end", values=(video_name, total_frames, kept_frames, self.format_time(time_spent)))
 
     def update_progress(self, value, max_value):
+        """Update the progress bar based on the current processing status."""
         self.progress_bar['value'] = value
         self.progress_bar['maximum'] = max_value
         self.root.update_idletasks()
 
     @staticmethod
     def format_time(seconds):
+        """Format seconds into a more readable string format (minutes and seconds)."""
         return f"{int(seconds // 60)}m {int(seconds % 60)}s"
 
 def preprocess_videos(csv_file, output_folder, 
@@ -143,6 +159,7 @@ def _preprocess_video(video_path, output_folder, face_cascade, fullbody_cascade,
         
         frame_index += 1
         
+        # Process every 16th frame
         if frame_index % 16 != 0:
             continue
         

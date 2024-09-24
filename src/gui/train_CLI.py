@@ -1,9 +1,26 @@
+"""
+train_CLI.py
+
+A command-line interface for training a machine learning model.
+This application allows users to preprocess videos, edit training
+hyperparameters, and train a model while visualizing training and
+validation loss and accuracy.
+
+Modules:
+- Video Preprocessing: Handles video frame extraction.
+- Model Training: Executes the model training process.
+
+Author: Matthew Guo
+Date: 24.09.09
+"""
+
 import os
 import matplotlib.pyplot as plt
 from data_preprocessing.video_preprocessing import preprocess_videos
 from model_training.train import run_training
 
 def plot_loss_chart(train_loss, val_loss, output_path='lossChart.png'):
+    """Plot and save the training and validation loss chart."""
     plt.figure(figsize=(10, 5))
     plt.plot(train_loss, marker='', linestyle='-', color='b', label='Training Loss')
     plt.plot(val_loss, marker='', linestyle='--', color='r', label='Validation Loss')
@@ -17,6 +34,7 @@ def plot_loss_chart(train_loss, val_loss, output_path='lossChart.png'):
     print(f"Training and Validation Loss Chart saved as '{output_path}'.")
 
 def plot_accuracy_chart(val_accuracy, output_path='accuracyChart.png'):
+    """Plot and save the validation accuracy chart."""
     plt.figure(figsize=(10, 5))
     plt.plot(val_accuracy, marker='', linestyle='-', color='g', label='Validation Accuracy')
     plt.title("Validation Accuracy Over Epochs")
@@ -29,6 +47,7 @@ def plot_accuracy_chart(val_accuracy, output_path='accuracyChart.png'):
     print(f"Validation Accuracy Chart saved as '{output_path}'.")
 
 def get_folder_size(folder):
+    """Calculate the total size of the specified folder in bytes."""
     total_size = 0
     for dirpath, dirnames, filenames in os.walk(folder):
         for filename in filenames:
@@ -37,6 +56,7 @@ def get_folder_size(folder):
     return total_size
 
 def run_trainCLI():
+    """Main function to run the training command-line interface."""
     csv_file = "dataset.csv"
     epochs = 16  # Default value
     batch_size = 32  # Default value
@@ -58,7 +78,7 @@ def run_trainCLI():
         print(f"1. Select CSV File (Currently selected: {csv_file})")
         print(f"2. Preprocess Videos (ProcessedData folder size: {folder_size_mb:.2f} MB)")
         print(f"3. Edit Training Hyperparameters (Epochs: {epochs}, Batch Size: {batch_size}, Learning Rate: {learning_rate})")
-        print(f"4. Train Model ")
+        print(f"4. Train Model")
         print(f"5. Change Chart Output Paths (Loss Chart: {chart_output_path}, Accuracy Chart: {accuracy_output_path})")
         print("q. Exit")
         choice = input("Select an option (1-5): ").strip()

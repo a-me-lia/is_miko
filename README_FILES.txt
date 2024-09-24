@@ -11,12 +11,14 @@ src/
 │   ├── predict.py │ Uses model trained with train.py to make predictions
 │
 ├── gui/
-│   ├── dataset_gui.py │ Currently has all dataset CSV handling methods and creates the GUI
-│   ├── train_gui.py │ GUI for training, includes video preprocessing
-│   ├── predict_gui.py │ GUI for making prediction
+│   ├── dataset_gui.py │ Currently has all dataset CSV handling methods and creates the GUI*
+│   ├── train_gui.py │ GUI for training, includes video preprocessing*
+│   ├── predict_gui.py │ GUI for making prediction*
 │
-├── main.py │ Runs the GUI components
+├── main.py │ Runs the GUI components*
 └── setEnv.py │ File for the TF training device utilization variables
+
+* may be subsitituted with "CLI" for CLI version
 
 
 Other files/folders:

@@ -1,7 +1,16 @@
 
 # is_miko
 
-Purpose: To accurately predict if an image contains Yae Miko from the game Genshin Impact.
+Purpose: To accurately predict if an image contains Yae Miko from the game Genshin Impact. This is a specific application of exploring how to best train machine learning models with a contrained/nonexistant dataset.
+
+In this program, the user can create a dataset from scratch with classes by adding video paths to be coped in the dataset manager. When preprocessing is run, the video will be sampled every 24th frame and kept if HaarCascade detects faces or bodies. 
+
+When training is run, there is option to adjust the training hyperparameters within the program. The training program itself does additional iage data preprocessing by applying augmentation and scaling to the desired 224/224/3 input size for resnet50. After each epoch a snapshot is created too. These snapshots are 100MB each, so please be mindful of running thousands of epochs and a storage-starved device.
+
+After training is complete, the model file is spat out along with plots of the loss and validation numbers every epoch.
+
+The prediction manager can select a folder to run batch predict and validate results, or run inferences one by one.
+
 Releases are not yet packaged for this project
 
 ---
