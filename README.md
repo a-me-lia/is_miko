@@ -49,3 +49,8 @@ The same overfitting issue is present for other datasets, such as a binary datas
 - Overfitting: Because such small datasets and using a sophistocated model like ResNet, it is very prone to overfit when training.
 - Poor performance of haarcascade-faces on recognizing rendered or drawn styles. This was partially fixed by implementing frame collection with three cascade detectors.
 - Execessive RAM/VRAM usage: Dataset was limited to ~60GB as the program would attempt to put the whole dataset into a single dataframe in RAM. This was fixed.
+
+## Statistics
+
+- 1000 loc excl. whitespace
+- 1.9MB source file size
